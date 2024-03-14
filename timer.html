@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(#333, transparent),
+              radial-gradient(50vw at 25vw max(25vw, 110%), #00cdff 0, transparent 60%),
+              radial-gradient(50vw at 50vw max(25vw, 110%), #ff0095 0, transparent 60%),
+              radial-gradient(50vw at 75vw max(25vw, 110%), #ffdf00 0, transparent 60%);
+}
+        
+
+        #timer {
+            font-size: 2em;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div id="timer">00:00:00</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var timerElement = document.getElementById('timer');
+        var totalTimeInMinutes = sessionStorage.getItem('totalTimeInMinutes');
+
+        if (!totalTimeInMinutes) {
+            prompt("Invalid timer duration. Please set the duration on the previous page.");
+            window.location.href = "index.html";
+        }
+
+        totalTimeInMinutes = parseFloat(totalTimeInMinutes);
+
+        function updateTimerDisplay(timeInSeconds) {
+            var hours = Math.floor(timeInSeconds / 3600);
+            var minutes = Math.floor((timeInSeconds % 3600) / 60);
+            var seconds = Math.floor(timeInSeconds % 60);
+
+            timerElement.textContent = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+        }
+
+        function pad(number) {
+            return (number < 10 ? '0' : '') + number;
+        }
+
+        function startTimer() {
+            var currentTime = totalTimeInMinutes * 60; // convert minutes to seconds
+
+            function update() {
+                updateTimerDisplay(currentTime);
+
+                if (currentTime > 0) {
+                    currentTime--;
+                } else {
+                    clearInterval(timerInterval);
+                    alert("Timer complete!");
+                    // Redirect back to set timer page after completion
+                    window.location.href = "index.html";
+                }
+            }
+
+            // Initial display
+            update();
+
+            // Update every second
+            var timerInterval = setInterval(update, 1000);
+        }
+
+        startTimer();
+    });
+
+</script>
+
+</body>
+</html>

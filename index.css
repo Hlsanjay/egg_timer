@@ -1,0 +1,429 @@
+
+html, body {
+  width: 100%;
+  height:100%;
+}
+
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+    /* background: linear-gradient(#333, transparent),
+              radial-gradient(50vw at 25vw max(25vw, 110%), #00cdff 0, transparent 60%),
+              radial-gradient(50vw at 50vw max(25vw, 110%), #ff0095 0, transparent 60%),
+              radial-gradient(50vw at 75vw max(25vw, 110%), #ffdf00 0, transparent 60%); */
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr  ;
+    grid-template-rows: 1fr 60px 60px ;
+
+}
+.egg .clock{
+  display: grid;
+  justify-content:center;
+  grid-row: 1 / span 1; /* Updated grid-row property */
+ justify-content: center;
+
+}
+.egg img {
+  height: 100%; /* Make the image fill the entire height of the .egg container */
+  width: auto; /* Maintain the aspect ratio of the image */
+  justify-content:center;
+
+ 
+}
+.button{
+    display: grid;
+    justify-content: center;
+    grid-row: 2/ span 2;
+    
+}
+.bt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  top: -40px;
+  
+}
+/* .button {
+  background-color: #04AA6D; 
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+} */
+
+/* .button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #04AA6D;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-color: aliceblue;
+  position: relative;
+
+}
+
+.button1:hover {
+  background-color: #04AA6D;
+  color: white;
+} */
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 3px solid;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-color:rgb(236, 206, 14);
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+a{
+  text-decoration: none;
+}
+  
+.button1 {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: 200px; /* Adjust the width as needed */
+  border-radius: 12px;
+  height: 50px; /* Adjust the height as needed */
+  font-size: 16px;
+}
+
+.button1 input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 10px; /* Adjust padding as needed */
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.button1 input:hover {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.button1 input {
+  --border-size: 3px;
+  --border-angle: 0turn;
+
+  background-image: conic-gradient(
+      from var(--border-angle),
+      #213,
+      #112 50%,
+      #213
+    ),
+    conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+  background-size: calc(100% - (var(--border-size) * 2))
+      calc(100% - (var(--border-size) * 2)),
+    cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  animation: bg-spin 3s linear infinite;
+}
+
+.button2:hover {
+  animation-play-state: paused;
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+/* clock */
+body {
+  /* height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 10px solid #BE9A50;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: -6px -6px 16px rgba(255, 255, 255, 0.5),
+              6px 6px 16px hsla(0, 0%, 100%, 0.5),
+              inset 6px 6px 16px hsla(0, 0%, 0%, 0.5),
+              inset -6px -6px 16px rgba(255, 255, 255, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.1);
+  }
+}
+
+.center-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: black;
+  border-radius: 50%;
+  animation: pulseDot 2s infinite;
+  left: 73PX;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.2);
+  }
+}
+
+.hand {
+  position: absolute;
+  background-color: black;
+  transform-origin: 50% 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.hour-hand {
+  width: 2px;
+  height: 20px;
+  animation: rotateHourHand 12h steps(12) infinite;
+}
+
+@keyframes rotateHourHand {
+  from {
+      transform: translate(-50%, -100%) rotate(0deg);
+  }
+  to {
+      transform: translate(-50%, -100%) rotate(360deg);
+  }
+}
+
+.minute-hand {
+  width: 2px;
+  height: 25px;
+  animation: rotateMinuteHand 60min steps(60) infinite;
+}
+
+@keyframes rotateMinuteHand {
+  from {
+      transform: translate(-50%, -100%) rotate(0deg);
+  }
+  to {
+      transform: translate(-50%, -100%) rotate(360deg);
+  }
+}
+
+.second-hand {
+  width: 2px;
+  height: 29px;
+  animation: rotateSecondHand 60s steps(60) infinite;
+}
+
+@keyframes rotateSecondHand {
+  from {
+      transform: translate(-50%, -100%) rotate(0deg);
+  }
+  to {
+      transform: translate(-50%, -100%) rotate(360deg);
+  }
+}
+
+.number {
+  position: absolute;
+  color: black;
+}
+
+.number-12 {
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.number-3 {
+  bottom: 50%;
+  right: 5px;
+  transform: translateY(50%);
+}
+
+.number-6 {
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.number-9 {
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+}
+.clock{
+  top:-290px;
+  left: 150px;
+
+}
+
+/* timer alream stopwatch */
+
+.three{
+  display: grid;
+  justify-content: center;
+  grid-row: 3/ span 3;
+  display: inline-block;
+  position: relative;
+}
+
+.th {
+  position: relative;
+   display: flex; 
+  flex-shrink: 1; 
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  top: 22px;
+}
+.th1, .th2, .th3{
+justify-content: space-between;
+border-radius: 10px;
+top: 20px;
+border: 1px solid;
+border:solid whitesmoke ;
+
+}
+.th1,.th2,.th3 {
+  padding: 8px 15px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #F5B51F;
+  border: none;
+  border-radius: 15px;
+  border:solid whitesmoke ;
+  
+}
+
+.th1:hover {background-color: yellow}
+.th1:active {
+  background-color: yellow;
+  transform: translateY(4px);
+}
+
+.th2:hover {background-color: yellow}
+.th2:active {
+  background-color: #3e8e41;
+  transform: translateY(4px);
+}
+.th3:hover {background-color: yellow}
+.th3:active {
+  background-color: #3e8e41;
+  transform: translateY(4px);
+}
+@keyframes waterAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.button button,
+.th button {
+    animation: waterAnimation 1s infinite;
+}
+
+/* Additional styling for buttons */
+.button button,
+.th button {
+    background-color:gold;
+    color: black;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 5px;
+    
+}
+
+/* feedback */
+/* .feedback {
+  display: grid;
+  justify-content: center;
+  grid-row: 5/5;
+  align-items: center;
+} */
+
+
+/* .help {
+  display: grid;
+  grid-area: 4 / 1 / 5 / 2; /* grid-row: 4/5 */
+/* } */ 

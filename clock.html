@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egg Analog Clock</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* height: 100vh; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clock {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border: 10px solid yellow;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: -6px -6px 16px rgba(255, 255, 255, 0.5),
+                        6px 6px 16px hsla(0, 0%, 100%, 0.5),
+                        inset 6px 6px 16px hsla(0, 0%, 0%, 0.5),
+                        inset -6px -6px 16px rgba(255, 255, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .center-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 50%;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .hand {
+            position: absolute;
+            background-color: black;
+            transform-origin: 50% 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+        }
+
+        .hour-hand {
+            width: 3px;
+            height: 30px;
+            animation: rotateHourHand 12h steps(12) infinite;
+        }
+
+        @keyframes rotateHourHand {
+            from {
+                transform: translate(-50%, -100%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -100%) rotate(360deg);
+            }
+        }
+
+        .minute-hand {
+            width: 3px;
+            height: 40px;
+            animation: rotateMinuteHand 60min steps(60) infinite;
+        }
+
+        @keyframes rotateMinuteHand {
+            from {
+                transform: translate(-50%, -100%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -100%) rotate(360deg);
+            }
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 35px;
+            animation: rotateSecondHand 60s steps(60) infinite;
+        }
+
+        @keyframes rotateSecondHand {
+            from {
+                transform: translate(-50%, -100%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -100%) rotate(360deg);
+            }
+        }
+
+        .number {
+            position: absolute;
+            color: black;
+        }
+
+        .number-12 {
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .number-3 {
+            bottom: 50%;
+            right: 5px;
+            transform: translateY(50%);
+        }
+
+        .number-6 {
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .number-9 {
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+
+<div class="clock">
+    <div class="center-dot"></div>
+    <div class="number number-12">12</div>
+    <div class="number number-3">3</div>
+    <div class="number number-6">6</div>
+    <div class="number number-9">9</div>
+    <div class="hand hour-hand"></div>
+    <div class="hand minute-hand"></div>
+    <div class="hand second-hand"></div>
+</div>
+<script>
+    function updateClock() {
+         var today = new Date();
+         var hours = today.getHours() % 12; // Ensure 12-hour format
+         var minutes = today.getMinutes();
+         var seconds = today.getSeconds();
+ 
+         var hourDeg = (hours + minutes / 60) * 360 / 12;
+         var minuteDeg = (minutes + seconds / 60) * 360 / 60;
+         var secondDeg = seconds * 360 / 60;
+ 
+         document.querySelector(".hour-hand").style.transform = `translate(-50%, -100%) rotate(${0 + hourDeg}deg)`;
+         document.querySelector(".minute-hand").style.transform = `translate(-50%, -100%) rotate(${0 + minuteDeg}deg)`;
+         document.querySelector(".second-hand").style.transform = `translate(-50%, -100%) rotate(${0 + secondDeg}deg)`;
+     }
+ 
+     document.addEventListener('DOMContentLoaded', function () {
+         updateClock();  // Initial update
+ 
+         setInterval(updateClock, 1000);  // Update every second
+     });
+ </script>
+</body>
+</html>
